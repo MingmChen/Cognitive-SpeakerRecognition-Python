@@ -1,0 +1,3 @@
+subscription_key = '5b8c1e685b2a4229a28fcd48276ed494'
+locale = 'en-us'
+force_short_audio=True

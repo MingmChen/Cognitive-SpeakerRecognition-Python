@@ -1,6 +1,7 @@
 import VerificationServiceHttpClientHelper
 import sys
 
+
 def create_profile(subscription_key, locale):
     """Creates a profile on the server.
 
@@ -12,8 +13,10 @@ def create_profile(subscription_key, locale):
         subscription_key)
 
     creation_response = helper.create_profile(locale)
+    profile_id = creation_response.get_profile_id()
+    print('GET Profile ID = {0}'.format(profile_id))
+    return profile_id
 
-    print('Profile ID = {0}'.format(creation_response.get_profile_id()))
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

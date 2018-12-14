@@ -9,6 +9,7 @@ import VerificationResponse
 import VerificationProfile
 import logging
 
+
 class VerificationServiceHttpClientHelper:
     """Abstracts the interaction with the Verification service."""
 
@@ -75,14 +76,14 @@ class VerificationServiceHttpClientHelper:
             else:
                 reason = res.reason if not message else message
                 raise Exception('Error creating profile: ' + reason)
-				
+
         except:
             logging.error('Error creating profile.')
             raise
-    
+
     def get_profile(self, profile_id):
         """Get a speaker's profile with given profile ID
-        
+
         Arguments:
         subscription_key -- the subscription key string
         profile_id -- the profile ID of the profile to resets
@@ -92,14 +93,14 @@ class VerificationServiceHttpClientHelper:
             request_url = '{0}/{1}'.format(
                 self._VERIFICATION_PROFILES_URI,
                 urllib.parse.quote(profile_id))
-            
+
             # Send the request
             res, message = self._send_request(
                 'GET',
                 self._BASE_URI,
                 request_url,
                 self._JSON_CONTENT_HEADER_VALUE)
-            
+
             if res.status == self._STATUS_OK:
                 # Parse the response body
                 profile_raw = json.loads(message)
@@ -107,12 +108,11 @@ class VerificationServiceHttpClientHelper:
             else:
                 reason = reason if not message else message
                 raise Exception('Error getting profile: ' + reason)
-            
+
         except:
             logging.error('Error getting profile')
             raise
-        
-    
+
     def delete_profile(self, profile_id):
         """Delete the given profile from the server
 
@@ -124,26 +124,25 @@ class VerificationServiceHttpClientHelper:
             request_url = '{0}/{1}'.format(
                 self._VERIFICATION_PROFILES_URI,
                 urllib.parse.quote(profile_id))
-            
+
             # Send the request
             res, message = self._send_request(
                 'DELETE',
                 self._BASE_URI,
                 request_url,
                 self._JSON_CONTENT_HEADER_VALUE)
-                
+
             if res.status != self._STATUS_OK:
                 reason = res.reason if not message else message
                 raise Exception('Error deleting profile: ' + reason)
-        
+
         except:
             logging.error('Error deleting profile')
             raise
 
-    
     def reset_enrollments(self, profile_id):
         """Reset enrollments of a given profile from the server
-        
+
         Arguments:
         profile_id -- the profile ID of the profile to reset
         """
@@ -152,21 +151,21 @@ class VerificationServiceHttpClientHelper:
             request_url = '{0}/{1}/reset?'.format(
                 self._VERIFICATION_PROFILES_URI,
                 urllib.parse.quote(profile_id))
-            
+
             # Send the request
             res, message = self._send_request(
                 'POST',
                 self._BASE_URI,
                 request_url,
                 self._JSON_CONTENT_HEADER_VALUE)
-            
+
             if res.status != self._STATUS_OK:
                 reason = res.reason if not message else message
                 raise Exception('Error resetting profile: ' + reason)
         except:
             logging.error('Error resetting profile')
             raise
-    
+
     def enroll_profile(self, profile_id, file_path):
         """Enrolls a profile using an audio file and returns a
         dictionary of the enrollment response.
@@ -180,7 +179,6 @@ class VerificationServiceHttpClientHelper:
             request_url = '{0}/{1}/enroll'.format(
                 self._VERIFICATION_PROFILES_URI,
                 urllib.parse.quote(profile_id))
-
 
             # Prepare the body of the message
             with open(file_path, 'rb') as body:
