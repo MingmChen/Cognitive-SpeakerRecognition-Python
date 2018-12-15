@@ -11,7 +11,7 @@ def print_all_profiles(subscription_key):
         subscription_key)
 
     profiles = helper.get_all_profiles()
-
+    
     print('Profile ID, Locale, Enrollments Count, Remaining Enrollments Count,'
           ' Created Date Time, Last Action Date Time, Enrollment Status')
     for profile in profiles:

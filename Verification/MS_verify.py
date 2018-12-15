@@ -23,6 +23,10 @@ def MS_verify(file_path):
     profile_id = create_profile(subscription_key, locale)
     enroll_profile(subscription_key, profile_id, file_path)
 
-if __name__=='__main__':
-    MS_verify('test.wav')
-        
+
+if __name__ == '__main__':
+    file_path = './test.wav'
+    profile_id = create_profile(subscription_key, locale)
+    get_profile(subscription_key, profile_id)
+    reset_enrollments(subscription_key, profile_id)
+    enroll_profile(subscription_key, profile_id, file_path)

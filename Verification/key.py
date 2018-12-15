@@ -1,2 +1,2 @@
-subscription_key = '5b8c1e685b2a4229a28fcd48276ed494'
+subscription_key = 'e04e904c8a9e4d7e893f7aae246a5e20'
 locale = 'en-us'
